@@ -14,6 +14,6 @@
 </head>
 
 <body>
-    <a href="${pageContext.request.contextPath}/user/selectUserByUid?uid=1">测试</a><span>|</span><a href="#">忘记密码？</a>
+    <a href="${pageContext.request.contextPath}/user/getAllUser">测试</a><span>|</span><a href="#">忘记密码？</a>
 </body>
 </html>

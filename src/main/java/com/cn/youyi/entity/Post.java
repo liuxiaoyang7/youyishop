@@ -2,7 +2,6 @@ package com.cn.youyi.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Post {
@@ -10,13 +9,11 @@ public class Post {
     private String pcontent;
     private String pimg;
     private Timestamp publishtime;
+    private Integer ptid;
+    private Integer uid;
     private Integer cid;
     private Integer pbid;
-    private Collection<Comment> commentsByPid;
-    private Posttype posttypeByPtid;
-    private User userByUid;
     private Commodity commodityByCid;
-    private Postbar postbarByPbid;
 
     @Id
     @Column(name = "pid", nullable = false)
@@ -59,6 +56,26 @@ public class Post {
     }
 
     @Basic
+    @Column(name = "ptid", nullable = true)
+    public Integer getPtid() {
+        return ptid;
+    }
+
+    public void setPtid(Integer ptid) {
+        this.ptid = ptid;
+    }
+
+    @Basic
+    @Column(name = "uid", nullable = true)
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    @Basic
     @Column(name = "cid", nullable = true)
     public Integer getCid() {
         return cid;
@@ -89,6 +106,8 @@ public class Post {
         if (pcontent != null ? !pcontent.equals(post.pcontent) : post.pcontent != null) return false;
         if (pimg != null ? !pimg.equals(post.pimg) : post.pimg != null) return false;
         if (publishtime != null ? !publishtime.equals(post.publishtime) : post.publishtime != null) return false;
+        if (ptid != null ? !ptid.equals(post.ptid) : post.ptid != null) return false;
+        if (uid != null ? !uid.equals(post.uid) : post.uid != null) return false;
         if (cid != null ? !cid.equals(post.cid) : post.cid != null) return false;
         if (pbid != null ? !pbid.equals(post.pbid) : post.pbid != null) return false;
 
@@ -101,38 +120,11 @@ public class Post {
         result = 31 * result + (pcontent != null ? pcontent.hashCode() : 0);
         result = 31 * result + (pimg != null ? pimg.hashCode() : 0);
         result = 31 * result + (publishtime != null ? publishtime.hashCode() : 0);
+        result = 31 * result + (ptid != null ? ptid.hashCode() : 0);
+        result = 31 * result + (uid != null ? uid.hashCode() : 0);
         result = 31 * result + (cid != null ? cid.hashCode() : 0);
         result = 31 * result + (pbid != null ? pbid.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "postByPid")
-    public Collection<Comment> getCommentsByPid() {
-        return commentsByPid;
-    }
-
-    public void setCommentsByPid(Collection<Comment> commentsByPid) {
-        this.commentsByPid = commentsByPid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "ptid", referencedColumnName = "ptid")
-    public Posttype getPosttypeByPtid() {
-        return posttypeByPtid;
-    }
-
-    public void setPosttypeByPtid(Posttype posttypeByPtid) {
-        this.posttypeByPtid = posttypeByPtid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "uid", referencedColumnName = "uid")
-    public User getUserByUid() {
-        return userByUid;
-    }
-
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
     }
 
     @ManyToOne
@@ -143,15 +135,5 @@ public class Post {
 
     public void setCommodityByCid(Commodity commodityByCid) {
         this.commodityByCid = commodityByCid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "pbid", referencedColumnName = "pbid")
-    public Postbar getPostbarByPbid() {
-        return postbarByPbid;
-    }
-
-    public void setPostbarByPbid(Postbar postbarByPbid) {
-        this.postbarByPbid = postbarByPbid;
     }
 }

@@ -1,13 +1,14 @@
 package com.cn.youyi.entity;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Posttype {
     private int ptid;
     private String ptype;
-    private Collection<Post> postsByPtid;
 
     @Id
     @Column(name = "ptid", nullable = false)
@@ -47,14 +48,5 @@ public class Posttype {
         int result = ptid;
         result = 31 * result + (ptype != null ? ptype.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "posttypeByPtid")
-    public Collection<Post> getPostsByPtid() {
-        return postsByPtid;
-    }
-
-    public void setPostsByPtid(Collection<Post> postsByPtid) {
-        this.postsByPtid = postsByPtid;
     }
 }

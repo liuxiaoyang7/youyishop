@@ -2,7 +2,6 @@ package com.cn.youyi.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Comment {
@@ -12,10 +11,7 @@ public class Comment {
     private Integer pid;
     private Integer uid;
     private Integer againCmid;
-    private Post postByPid;
-    private User userByUid;
     private Comment commentByAgainCmid;
-    private Collection<Comment> commentsByCmid;
 
     @Id
     @Column(name = "cmid", nullable = false)
@@ -106,26 +102,6 @@ public class Comment {
     }
 
     @ManyToOne
-    @JoinColumn(name = "pid", referencedColumnName = "pid")
-    public Post getPostByPid() {
-        return postByPid;
-    }
-
-    public void setPostByPid(Post postByPid) {
-        this.postByPid = postByPid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "uid", referencedColumnName = "uid")
-    public User getUserByUid() {
-        return userByUid;
-    }
-
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
-    }
-
-    @ManyToOne
     @JoinColumn(name = "again_cmid", referencedColumnName = "cmid")
     public Comment getCommentByAgainCmid() {
         return commentByAgainCmid;
@@ -133,14 +109,5 @@ public class Comment {
 
     public void setCommentByAgainCmid(Comment commentByAgainCmid) {
         this.commentByAgainCmid = commentByAgainCmid;
-    }
-
-    @OneToMany(mappedBy = "commentByAgainCmid")
-    public Collection<Comment> getCommentsByCmid() {
-        return commentsByCmid;
-    }
-
-    public void setCommentsByCmid(Collection<Comment> commentsByCmid) {
-        this.commentsByCmid = commentsByCmid;
     }
 }

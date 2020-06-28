@@ -1,13 +1,14 @@
 package com.cn.youyi.entity;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Game {
     private int gid;
     private String gname;
-    private Collection<Commodity> commoditiesByGid;
 
     @Id
     @Column(name = "gid", nullable = false)
@@ -47,14 +48,5 @@ public class Game {
         int result = gid;
         result = 31 * result + (gname != null ? gname.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "gameByGid")
-    public Collection<Commodity> getCommoditiesByGid() {
-        return commoditiesByGid;
-    }
-
-    public void setCommoditiesByGid(Collection<Commodity> commoditiesByGid) {
-        this.commoditiesByGid = commoditiesByGid;
     }
 }

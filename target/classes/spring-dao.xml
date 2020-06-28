@@ -48,31 +48,24 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>   <!--指定数据库方言-->
                 <prop key="hibernate.show_sql">true</prop>     <!--在控制台显示执行的数据库操作语句-->
                 <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/gamesale?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT]]></prop>
-                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop> <!--在控制台显示执行的数据哭操作语句（格式）-->
+                <prop key="hibernate.connection.url"><![CDATA[jdbc:mysql://localhost:3306/gamesale]]></prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</prop> <!--在控制台显示执行的数据哭操作语句（格式）-->
             </props>
         </property>
         <property name="mappingLocations">
             <list>
-                <value>classpath:com/cn/youyi/entity/Comment.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Commodity.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Discount.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Game.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Post.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Postbar.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Posttype.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/User.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Usertype.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Comment.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Commodity.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Discount.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Game.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Post.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/User.hbm.xml</value>
-                <value>classpath:com/cn/youyi/entity/Usertype.hbm.xml</value>
+
+                <value>classpath:Comment.hbm.xml</value>
+                <value>classpath:Commodity.hbm.xml</value>
+                <value>classpath:Discount.hbm.xml</value>
+                <value>classpath:Game.hbm.xml</value>
+                <value>classpath:Post.hbm.xml</value>
+                <value>classpath:Postbar.hbm.xml</value>
+                <value>classpath:Posttype.hbm.xml</value>
+                <value>classpath:User.hbm.xml</value>
+                <value>classpath:Usertype.hbm.xml</value>
             </list>
         </property>
-
     </bean>
 
     <!-- 事物管理器配置  -->

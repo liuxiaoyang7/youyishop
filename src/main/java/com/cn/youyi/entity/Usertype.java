@@ -1,13 +1,14 @@
 package com.cn.youyi.entity;
 
-import javax.persistence.*;
-import java.util.Collection;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Usertype {
     private int id;
     private String type;
-    private Collection<User> usersById;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -47,14 +48,5 @@ public class Usertype {
         int result = id;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "usertypeByTypeid")
-    public Collection<User> getUsersById() {
-        return usersById;
-    }
-
-    public void setUsersById(Collection<User> usersById) {
-        this.usersById = usersById;
     }
 }

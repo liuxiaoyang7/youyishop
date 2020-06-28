@@ -1,7 +1,6 @@
 package com.cn.youyi.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 public class User {
@@ -13,9 +12,7 @@ public class User {
     private String iDcard;
     private Integer experience;
     private String headphoto;
-    private Collection<Comment> commentsByUid;
-    private Collection<Commodity> commoditiesByUid;
-    private Collection<Post> postsByUid;
+    private Integer typeid;
     private Usertype usertypeByTypeid;
 
     @Id
@@ -98,6 +95,16 @@ public class User {
         this.headphoto = headphoto;
     }
 
+    @Basic
+    @Column(name = "typeid", nullable = true)
+    public Integer getTypeid() {
+        return typeid;
+    }
+
+    public void setTypeid(Integer typeid) {
+        this.typeid = typeid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -113,6 +120,7 @@ public class User {
         if (iDcard != null ? !iDcard.equals(user.iDcard) : user.iDcard != null) return false;
         if (experience != null ? !experience.equals(user.experience) : user.experience != null) return false;
         if (headphoto != null ? !headphoto.equals(user.headphoto) : user.headphoto != null) return false;
+        if (typeid != null ? !typeid.equals(user.typeid) : user.typeid != null) return false;
 
         return true;
     }
@@ -127,34 +135,8 @@ public class User {
         result = 31 * result + (iDcard != null ? iDcard.hashCode() : 0);
         result = 31 * result + (experience != null ? experience.hashCode() : 0);
         result = 31 * result + (headphoto != null ? headphoto.hashCode() : 0);
+        result = 31 * result + (typeid != null ? typeid.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "userByUid")
-    public Collection<Comment> getCommentsByUid() {
-        return commentsByUid;
-    }
-
-    public void setCommentsByUid(Collection<Comment> commentsByUid) {
-        this.commentsByUid = commentsByUid;
-    }
-
-    @OneToMany(mappedBy = "userByUid")
-    public Collection<Commodity> getCommoditiesByUid() {
-        return commoditiesByUid;
-    }
-
-    public void setCommoditiesByUid(Collection<Commodity> commoditiesByUid) {
-        this.commoditiesByUid = commoditiesByUid;
-    }
-
-    @OneToMany(mappedBy = "userByUid")
-    public Collection<Post> getPostsByUid() {
-        return postsByUid;
-    }
-
-    public void setPostsByUid(Collection<Post> postsByUid) {
-        this.postsByUid = postsByUid;
     }
 
     @ManyToOne

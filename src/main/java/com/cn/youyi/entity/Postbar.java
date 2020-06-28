@@ -1,8 +1,10 @@
 package com.cn.youyi.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Date;
-import java.util.Collection;
 
 @Entity
 public class Postbar {
@@ -11,7 +13,6 @@ public class Postbar {
     private String barowner;
     private Date create;
     private Integer attention;
-    private Collection<Post> postsByPbid;
 
     @Id
     @Column(name = "pbid", nullable = false)
@@ -87,14 +88,5 @@ public class Postbar {
         result = 31 * result + (create != null ? create.hashCode() : 0);
         result = 31 * result + (attention != null ? attention.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "postbarByPbid")
-    public Collection<Post> getPostsByPbid() {
-        return postsByPbid;
-    }
-
-    public void setPostsByPbid(Collection<Post> postsByPbid) {
-        this.postsByPbid = postsByPbid;
     }
 }

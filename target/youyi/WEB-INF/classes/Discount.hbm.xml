@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cn.youyi.entity.Discount" table="discount" schema="gamesale">
+        <id name="did">
+            <column name="did" sql-type="int(5)"/>
+        </id>
+        <property name="content">
+            <column name="content" sql-type="varchar(225)" length="225" not-null="true"/>
+        </property>
+        <property name="img">
+            <column name="img" sql-type="varchar(225)" length="225" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

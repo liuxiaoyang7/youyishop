@@ -12,8 +12,8 @@
     <title>$Title$</title>
 </head>
 <body>
-<c:forEach var="user" items="${requestScope.get('user')}">
-    ${user.getuid}
+<c:forEach var="list" items="${requestScope.get('list')}">
+    ${list.uid}
 </c:forEach>
 </body>
 </html>

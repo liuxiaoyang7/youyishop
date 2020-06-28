@@ -1,8 +1,10 @@
 package com.cn.youyi.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
-import java.util.Collection;
 
 @Entity
 public class Commodity {
@@ -14,11 +16,9 @@ public class Commodity {
     private Integer popularity;
     private String cimg;
     private Integer gid;
+    private Integer uid;
     private Timestamp xinping;
     private Integer rexiao;
-    private Game gameByGid;
-    private User userByUid;
-    private Collection<Post> postsByCid;
 
     @Id
     @Column(name = "cid", nullable = false)
@@ -101,6 +101,16 @@ public class Commodity {
     }
 
     @Basic
+    @Column(name = "uid", nullable = true)
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
+    }
+
+    @Basic
     @Column(name = "xinping", nullable = true)
     public Timestamp getXinping() {
         return xinping;
@@ -135,6 +145,7 @@ public class Commodity {
         if (popularity != null ? !popularity.equals(commodity.popularity) : commodity.popularity != null) return false;
         if (cimg != null ? !cimg.equals(commodity.cimg) : commodity.cimg != null) return false;
         if (gid != null ? !gid.equals(commodity.gid) : commodity.gid != null) return false;
+        if (uid != null ? !uid.equals(commodity.uid) : commodity.uid != null) return false;
         if (xinping != null ? !xinping.equals(commodity.xinping) : commodity.xinping != null) return false;
         if (rexiao != null ? !rexiao.equals(commodity.rexiao) : commodity.rexiao != null) return false;
 
@@ -151,37 +162,9 @@ public class Commodity {
         result = 31 * result + (popularity != null ? popularity.hashCode() : 0);
         result = 31 * result + (cimg != null ? cimg.hashCode() : 0);
         result = 31 * result + (gid != null ? gid.hashCode() : 0);
+        result = 31 * result + (uid != null ? uid.hashCode() : 0);
         result = 31 * result + (xinping != null ? xinping.hashCode() : 0);
         result = 31 * result + (rexiao != null ? rexiao.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "gid", referencedColumnName = "gid")
-    public Game getGameByGid() {
-        return gameByGid;
-    }
-
-    public void setGameByGid(Game gameByGid) {
-        this.gameByGid = gameByGid;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "uid", referencedColumnName = "uid")
-    public User getUserByUid() {
-        return userByUid;
-    }
-
-    public void setUserByUid(User userByUid) {
-        this.userByUid = userByUid;
-    }
-
-    @OneToMany(mappedBy = "commodityByCid")
-    public Collection<Post> getPostsByCid() {
-        return postsByCid;
-    }
-
-    public void setPostsByCid(Collection<Post> postsByCid) {
-        this.postsByCid = postsByCid;
     }
 }

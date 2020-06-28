@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("user")
@@ -21,6 +22,14 @@ public class UserController {
     public String SelecUserByUid(int uid, Model model){
         User user = userService.getUserById(uid);
         model.addAttribute("user", user);
+        return "index";
+    }
+
+    @Transactional
+    @RequestMapping("getAllUser")
+    public String getAllUser(Model model){
+        List<User> list = userService.getAllUser();
+        model.addAttribute("list",list);
         return "index";
     }
 

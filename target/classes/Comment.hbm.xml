@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.cn.youyi.entity.Comment" table="comment" schema="gamesale">
+        <id name="cmid">
+            <column name="cmid" sql-type="int(5)"/>
+        </id>
+        <property name="comcontent">
+            <column name="comcontent" sql-type="varchar(225)" length="225" not-null="true"/>
+        </property>
+        <property name="comtime">
+            <column name="comtime" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="pid">
+            <column name="pid" sql-type="int(5)" not-null="true"/>
+        </property>
+        <property name="uid">
+            <column name="uid" sql-type="int(5)" not-null="true"/>
+        </property>
+        <property name="againCmid">
+            <column name="again_cmid" sql-type="int(5)" not-null="true"/>
+        </property>
+        <many-to-one insert="false" update="false" name="commentByAgainCmid" class="com.cn.youyi.entity.Comment">
+            <column name="again_cmid" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>
